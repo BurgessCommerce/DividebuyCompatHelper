@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Hyva\Theme\Service\CurrentTheme">
+        <plugin name="BurgessCommerce_HyvaCompatFallbackThemeFallback::Compat_Module_Validator" type="BurgessCommerce\HyvaCompatFallbackThemeFallback\Plugin\Hyva\Theme\Service\CurrentTheme"/>
+    </type>
+
+    <!--logger-->
+    <virtualType name="BurgessCommerce\HyvaCompatFallbackThemeFallback\Logger\Handler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="fileName" xsi:type="string">/var/log/hyva_fallback.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="BurgessCommerce\HyvaCompatFallbackThemeFallback\Logger\Logger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">Hyva CompatFallback/ThemeFallback Logger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">BurgessCommerce\HyvaCompatFallbackThemeFallback\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="BurgessCommerce\HyvaCompatFallbackThemeFallback\Helper\Logger">
+        <arguments>
+            <argument name="logger" xsi:type="object">BurgessCommerce\HyvaCompatFallbackThemeFallback\Logger\Logger</argument>
+        </arguments>
+    </type>
+</config>

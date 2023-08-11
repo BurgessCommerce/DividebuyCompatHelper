@@ -1,0 +1,29 @@
+{
+    "name": "burgesscommerce/hyva-compat-fallback-theme-fallback",
+    "description": "integration between Hyva_DividebuyPayment with Hyva_CompatModuleFallback and Hyva_ThemeFallback",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "email": "rowandburgess+th@gmail.com",
+            "name": "Rowan Burgess"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "magento/framework": ">=101 <104",
+        "psr/log": "^1.1"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "BurgessCommerce\\HyvaCompatFallbackThemeFallback\\": ""
+        }
+    }
+}
