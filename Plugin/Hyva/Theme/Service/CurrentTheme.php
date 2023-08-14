@@ -14,6 +14,7 @@ class CurrentTheme
 {
     const EXPECTED_MODULE = 'Hyva_DividebuyPayment';
     const EXPECTED_ORIGIN_CLASS = 'Hyva\CompatModuleFallback\Plugin\ViewFileOverride';
+    const UNEXPECTED_MODULE_NAME = 'checkout';
     const BACKTRACE_DEPTH = 8;
 
     /**
@@ -67,6 +68,7 @@ class CurrentTheme
     {
         if ($result == true
             && $this->isHyvaDividebuyPaymentEnabled()
+            && !$this->isCheckoutRelated() // this condition prevent error after redirection from checkout page. template override only applicable for Dividebuy urls like /checkoutconfig/...
             && $this->isfromHyvaCompatModuleFallback()) {
             //$this->logger->logMixed([$this->request->getHeader('referer'), $this->getUrl('checkout')]);
             return $this->request->getHeader('referer') !== $this->getUrl('checkout');
@@ -91,6 +93,16 @@ class CurrentTheme
         }
 
         return false;
+    }
+
+    /**
+     * check if current controller is checkout related (cart and onepage)
+     *
+     * @return boolean
+     */
+    public function isCheckoutRelated()
+    {
+        return $this->request->getModuleName() == self::UNEXPECTED_MODULE_NAME;
     }
 
     /**
