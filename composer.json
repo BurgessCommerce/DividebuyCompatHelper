@@ -15,8 +15,8 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "magento/framework": ">=101 <104",
-        "psr/log": "^1.1"
+        "magento/framework": ">=101",
+        "psr/log": "*"
     },
     "autoload": {
         "files": [
