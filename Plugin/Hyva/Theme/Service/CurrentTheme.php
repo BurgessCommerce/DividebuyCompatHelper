@@ -86,8 +86,9 @@ class CurrentTheme
     {
         $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, self::BACKTRACE_DEPTH);
         foreach ($trace as $step){
-            if ($step['class'] == self::EXPECTED_ORIGIN_CLASS) {
-                //$this->logger->logMixed($step);
+            if (is_array($step)
+                && isset($step['class'])
+                && $step['class'] == self::EXPECTED_ORIGIN_CLASS) {
                 return true;
             }
         }
